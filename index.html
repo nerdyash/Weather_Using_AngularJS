@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html lang="en" ng-app="weatherApp">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+</head>
+
+<body ng-controller="weatherCtrl as vm">
+
+<div class="container">
+
+    <div class="row">
+        <h2 class="text-center">{{vm.Info.name}} Weather</h2>
+    </div>
+
+    <div class="well">
+        <div class="row">
+
+
+                <h4 class="text-justify">Weather</h4>
+                <button class="btn btn-lg btn-primary">{{vm.Info.weather[0].description | uppercase}} <img ng-src="{{vm.icon}}"/></button>
+
+
+
+                <h4 class="text-justify">Speed (mph / kmph) Click to get other value</h4>
+                <a ng-init="speedVal=true" ng-show="speedVal" ng-click="speedVal=!speedVal">
+                    <button class="btn btn-lg btn-primary">{{(2.237*vm.Info.wind.speed).toFixed(1)}} mph</button>
+                </a>
+                <a ng-show="!speedVal" ng-click="speedVal=!speedVal">
+                    <button class="btn btn-lg btn-primary">{{(1.60934*(2.237*vm.Info.wind.speed)).toFixed(1)}} kmph</button>
+                </a>
+
+                <h4 class="text-justify">Temperature (F / C) Click to get other value</h4>
+                <a ng-init="tempVal=true" ng-show="tempVal" ng-click="tempVal=!tempVal">
+                    <button class="btn btn-lg btn-primary">{{((vm.Info.main.temp)*(9/5)-459.67).toFixed(1)}} F</button>
+                </a>
+
+
+
+                <a ng-show="!tempVal" ng-click="tempVal=!tempVal">
+                    <button class="btn btn-lg btn-primary">{{(vm.Info.main.temp - 273).toFixed(1)}} C</button>
+                </a>
+
+        </div>
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<script src="app.js"></script>
+<script src="js/controller/weatherCtrl.js"></script>
+<script src="js/service/weatherService.js"></script>
+
+</body>
+
+</html>
